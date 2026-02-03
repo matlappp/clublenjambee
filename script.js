@@ -9,7 +9,7 @@ const firebaseConfig = {
     appId: "1:344258526754:web:28568deed212b10162147b"
 };
 
-const GOFUNDME_URL = "https://www.gofundme.com/votre-campagne";
+const GOFUNDME_URL = "https://gofund.me/7d33f9335";
 
 const elements = {
     header: document.querySelector('.header'),
