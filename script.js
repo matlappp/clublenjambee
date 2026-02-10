@@ -1,12 +1,12 @@
 'use strict';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAX0DE04mZ4_rzlYn7_DXAN5c_mdKYH6Cs",
-    authDomain: "twitter-b881c.firebaseapp.com",
-    projectId: "twitter-b881c",
-    storageBucket: "twitter-b881c.firebasestorage.app",
-    messagingSenderId: "344258526754",
-    appId: "1:344258526754:web:28568deed212b10162147b"
+    apiKey: "AIzaSyDiVVazpZPy0rHOFDwc2u9NvAKKNR3k1kI",
+    authDomain: "club-lenjambee.firebaseapp.com",
+    projectId: "club-lenjambee",
+    storageBucket: "club-lenjambee.firebasestorage.app",
+    messagingSenderId: "696386646375",
+    appId: "1:696386646375:web:09e6aa8440325efc5affc2"
 };
 
 const GOFUNDME_URL = "https://gofund.me/7d33f9335";
