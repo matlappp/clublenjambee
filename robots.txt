@@ -1,1 +1,6 @@
 User-agent: *
+
+Disallow: /404.html
+Disallow: /donations.html
+
+Sitemap: https://www.clublenjambee.ca/sitemap.xml
