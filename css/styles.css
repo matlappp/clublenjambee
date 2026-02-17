@@ -272,6 +272,36 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--space-8);
 }
 
+.nav__menu.is-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    background: var(--color-primary);
+    padding: 1.5rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header.scrolled .nav__menu.is-open {
+    background-color: var(--color-off-white);
+    color: var(--color-gray-900);
+}
+
+.nav__mobile-toggle.is-active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.nav__mobile-toggle.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav__mobile-toggle.is-active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
 .nav__link {
     font-size: var(--text-sm);
     font-weight: 500;

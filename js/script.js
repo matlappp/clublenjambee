@@ -7,6 +7,12 @@ const firebaseConfig = {
     storageBucket: "club-lenjambee.firebasestorage.app",
     messagingSenderId: "696386646375",
     appId: "1:696386646375:web:09e6aa8440325efc5affc2"
+  /*apiKey: "AIzaSyAX0DE04mZ4_rzlYn7_DXAN5c_mdKYH6Cs",
+  authDomain: "twitter-b881c.firebaseapp.com",
+  projectId: "twitter-b881c",
+  storageBucket: "twitter-b881c.firebasestorage.app",
+  messagingSenderId: "344258526754",
+  appId: "1:344258526754:web:28568deed212b10162147b"*/
 };
 
 const GOFUNDME_URL = "https://gofund.me/7d33f9335";
@@ -292,9 +298,15 @@ async function handleFormSubmit(event) {
 }
 
 function handleScroll() {
-    const scrolled = window.scrollY > 50;
-    elements.header.classList.toggle('scrolled', scrolled);
+  const scrolled = window.scrollY > 50;
+
+  const header = document.querySelector('header.header:not(.donations__header)');
+  if (header) {
+    header.classList.toggle('scrolled', scrolled);
+  }
 }
+
+window.addEventListener('scroll', handleScroll);
 
 function setupMobileNav() {
     const toggle = document.querySelector('.nav__mobile-toggle');
