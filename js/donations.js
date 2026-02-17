@@ -47,7 +47,7 @@ function render(athletes, donations) {
     const maxTotal = athletes[0].total;
 
     els.grid.innerHTML = athletes.map((a, i) => {
-        const pct = maxTotal > 0 ? (a.total / maxTotal) * 100 : 0;
+        const pct = Math.min((a.total / 1000) * 100, 100);
         return `
             <div class="athlete-card" style="animation-delay:${i * 60}ms">
                 <div class="athlete-card__info">
