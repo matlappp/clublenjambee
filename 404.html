@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>404 | Club L'Enjambée Tremblant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Désolé, la page que vous cherchez n'existe pas. Découvrez plutôt notre club de course pour une collecte de dons.">
+    <meta name="author" content="matlap">
+    <meta name="keywords" content="ironman, amputés de guerre, dons, course">
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#1a365d">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta property="og:locale" content="fr_CA">
+    <meta property="og:site_name" content="Club L'Enjambée Tremblant">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.clublenjambee.ca/404">
+    <meta property="og:title" content="Club L'Enjambée Tremblant">
+    <meta property="og:description" content="Désolé, la page que vous cherchez n'existe pas. Découvrez plutôt notre club de course pour une collecte de dons.">
+    <meta property="og:image" content="https://www.clublenjambee.ca/logo.png">
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.clublenjambee.ca/404">
+    <meta property="twitter:title" content="Club L'Enjambée Tremblant">
+    <meta property="twitter:description" content="Désolé, la page que vous cherchez n'existe pas. Découvrez plutôt notre club de course pour une collecte de dons.">
+    <meta property="twitter:image" content="https://www.clublenjambee.ca/logo.png">
+    <meta rel="canonical" content="https://www.clublenjambee.ca/404">
+    <meta name="apple-mobile-web-app-title" content="Club L'Enjambée Tremblant">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/donations.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap&family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header donations__header">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">
+                <span class="nav__logo-text">L'Enjambée</span>
+                <span class="nav__logo-sub">Tremblant</span>
+            </a>
+            <ul class="nav__menu">
+                <li><a href="/#mission" class="nav__link">Mission</a></li>
+                <li><a href="/#defis" class="nav__link">Les Défis</a></li>
+                <li><a href="/#cause" class="nav__link">La Cause</a></li>
+                <li><a href="/#fonctionnement" class="nav__link">Comment ça marche</a></li>
+            </ul>
+            <button class="btn btn--primary nav__cta" data-open-modal>Donner</button>
+            <button class="nav__mobile-toggle" aria-label="Menu mobile">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="not-found">
+        <h1>404</h1>
+        <p>La page que vous cherchez n'existe pas.</p>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <span class="footer__logo">L'Enjambée Tremblant</span>
+                    <p class="footer__tagline">L'effort au service d'une cause</p>
+                </div>
+                <div class="footer__cause">
+                    <p>Fièrement au profit des</p>
+                    <span class="footer__cause-name">
+                        <a href="https://www.amputesdeguerre.ca/" target="_blank">Amputés de guerre du Canada</a>
+                    </span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Club L'Enjambée Tremblant. Tous droits réservés. Réalisé par <a href="https://www.matlap.ca/" target="_blank">Matlap Design</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="donationModal" aria-hidden="true">
+        <div class="modal__overlay" data-close-modal></div>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal__close" data-close-modal aria-label="Fermer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <div class="modal__content" id="formView">
+                <div class="modal__header">
+                    <h2 id="modalTitle" class="modal__title">Enregistrer votre don</h2>
+                    <p class="modal__subtitle">Remplissez ce formulaire, puis finalisez votre don sur GoFundMe.</p>
+                </div>
+                
+                <form id="donationForm" class="donation-form" novalidate>
+                    <div class="form__row">
+                        <div class="form__group">
+                            <label for="firstName" class="form__label">Prénom <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                class="form__input" 
+                                required
+                                autocomplete="given-name"
+                            >
+                            <span class="form__error" id="firstNameError"></span>
+                        </div>
+                        <div class="form__group">
+                            <label for="lastName" class="form__label">Nom <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                class="form__input" 
+                                required
+                                autocomplete="family-name"
+                            >
+                            <span class="form__error" id="lastNameError"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="email" class="form__label">Courriel <span class="required">*</span></label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form__input" 
+                            required
+                            autocomplete="email"
+                        >
+                        <span class="form__error" id="emailError"></span>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="member" class="form__label">Pour quel athlète donnes-tu ? <span class="required">*</span></label>
+                        <select id="member" name="member" class="form__select" required="">
+                            <option value="">Sélectionner un membre</option>
+                            <option value="public">Don du public</option>
+                            <option disabled>──────────</option>
+                            <option value="antoine-allard">Antoine Allard</option>
+                            <option value="ann-fred-lambert">Ann-Fred Lambert</option>
+                            <option value="arielle-cosgrove">Arielle Cosgrove</option>
+                            <option value="cedric-hebert">Cédric Hébert</option>
+                            <option value="charles-goupil">Charles Goupil</option>
+                            <option value="edouard-dufault">Édouard Dufault</option>
+                            <option value="eloi-boisteau">Eloi Boisteau</option>
+                            <option value="guillaume-foisy">Guillaume Foisy</option>
+                            <option value="gabriel-racine">Gabriel Racine</option>
+                            <option value="henri-fortier">Henri Fortier</option>
+                            <option value="jeremie-couture">Jérémie Couture</option>
+                            <option value="josh-robin">Josh Robin</option>
+                            <option value="julien-dubord">Julien Dubord</option>
+                            <option value="justin-barriere">Justin Barrière</option>
+                            <option value="justin-cote">Justin Côté</option>
+                            <option value="leandre-baudoux">Léandre Baudoux</option>
+                            <option value="louis-lessard">Louis Lessard</option>
+                            <option value="martin-dube">Martin Dubé</option>
+                            <option value="matheo-guay">Matheo Guay</option>
+                            <option value="mathis-caron">Mathis Caron</option>
+                            <option value="matis-boulay">Matis Boulay</option>
+                            <option value="mathys-patenaude">Mathys Patenaude</option>
+                            <option value="pierre-hugo-bousquet">Pierre-Hugo Bousquet</option>
+                            <option value="raphael-gingras">Raphael Gingras</option>
+                            <option value="simon-voghel">Simon Voghel</option>
+                            <option value="theo-dube-gosselin">Theo Dubé-Gosselin</option>
+                            <option value="vincent-fradet">Vincent Fradet</option>
+                            <option value="william-lowe">William Lowe</option>
+                            <option value="william-savoie">William Savoie</option>
+                            <option value="william-yelle">William Yelle</option>
+                        </select>
+                        <span class="form__error" id="memberError"></span>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="amount" class="form__label">Montant du don ($) <span class="required">*</span></label>
+                        <div class="form__input-wrapper">
+                            <span class="form__input-prefix">$</span>
+                            <input 
+                                type="number" 
+                                id="amount" 
+                                name="amount" 
+                                class="form__input form__input--with-prefix" 
+                                min="1" 
+                                step="1"
+                                required
+                            >
+                        </div>
+                        <span class="form__error" id="amountError"></span>
+                    </div>
+                    
+                    <div class="form__group form__group--checkbox">
+                        <label class="form__checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="taxReceipt" 
+                                name="taxReceipt" 
+                                class="form__checkbox"
+                            >
+                            <span class="form__checkbox-custom"></span>
+                            <span>Je souhaite recevoir un reçu d'impôt</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form__tax-fields" id="taxFields" hidden>
+                        <div class="form__tax-header">
+                            <h4>Informations pour le reçu d'impôt</h4>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="address" class="form__label">Adresse complète <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="address" 
+                                name="address" 
+                                class="form__input"
+                                autocomplete="street-address"
+                            >
+                            <span class="form__error" id="addressError"></span>
+                        </div>
+                        
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label for="city" class="form__label">Ville <span class="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="city" 
+                                    name="city" 
+                                    class="form__input"
+                                    autocomplete="address-level2"
+                                >
+                                <span class="form__error" id="cityError"></span>
+                            </div>
+                            <div class="form__group">
+                                <label for="province" class="form__label">Province <span class="required">*</span></label>
+                                <select id="province" name="province" class="form__select" autocomplete="address-level1">
+                                    <option value="">Sélectionner</option>
+                                    <option value="QC">Québec</option>
+                                    <option value="ON">Ontario</option>
+                                    <option value="BC">Colombie-Britannique</option>
+                                    <option value="AB">Alberta</option>
+                                    <option value="MB">Manitoba</option>
+                                    <option value="SK">Saskatchewan</option>
+                                    <option value="NS">Nouvelle-Écosse</option>
+                                    <option value="NB">Nouveau-Brunswick</option>
+                                    <option value="NL">Terre-Neuve-et-Labrador</option>
+                                    <option value="PE">Île-du-Prince-Édouard</option>
+                                    <option value="NT">Territoires du Nord-Ouest</option>
+                                    <option value="YT">Yukon</option>
+                                    <option value="NU">Nunavut</option>
+                                </select>
+                                <span class="form__error" id="provinceError"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label for="postalCode" class="form__label">Code postal <span class="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="postalCode" 
+                                    name="postalCode" 
+                                    class="form__input"
+                                    placeholder="A1A 1A1"
+                                    autocomplete="postal-code"
+                                >
+                                <span class="form__error" id="postalCodeError"></span>
+                            </div>
+                            <div class="form__group">
+                                <label for="phone" class="form__label">Téléphone <span class="required">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    class="form__input"
+                                    placeholder="(514) 555-0123"
+                                    autocomplete="tel"
+                                >
+                                <span class="form__error" id="phoneError"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group form__group--checkbox">
+                        <label class="form__checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="gofundmeConfirm" 
+                                name="gofundmeConfirm" 
+                                class="form__checkbox"
+                                required
+                            >
+                            <span class="form__checkbox-custom"></span>
+                            <span>J'ai compris que je dois finaliser mon don sur GoFundMe <span class="required">*</span></span>
+                        </label>
+                        <span class="form__error" id="gofundmeConfirmError"></span>
+                    </div>
+                    
+                    <div class="form__actions">
+                        <button type="submit" class="btn btn--primary btn--large btn--full" id="submitBtn">
+                            <span class="btn__text">Continuer vers GoFundMe</span>
+                            <span class="btn__loader" hidden>
+                                <svg class="spinner" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal__content modal__success" id="successView" hidden>
+                <div class="success__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h2 class="success__title">Merci pour votre générosité !</h2>
+                <p class="success__message">
+                    Votre intention de don a été enregistrée avec succès. 
+                    Pour finaliser votre don, veuillez vous rendre sur GoFundMe.
+                </p>
+                <div class="success__details" id="donationSummary">
+                </div>
+                <div class="success__actions">
+                    <a href="#" class="btn btn--primary btn--large" id="gofundmeLink" target="_blank" rel="noopener noreferrer">
+                        Accéder à GoFundMe
+                        <svg class="btn__icon btn__icon--right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
