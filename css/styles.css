@@ -1,7 +1,7 @@
 :root {
-    --color-primary: #1a365d;
-    --color-primary-dark: #0f2440;
-    --color-primary-light: #2c5282;
+    --color-primary: #173306;
+    --color-primary-dark: #112704;
+    --color-primary-light: #214709;
     --color-accent: #c53030;
     --color-accent-dark: #9b2c2c;
     --color-accent-light: #fc8181;
@@ -12,11 +12,11 @@
     --color-gray-200: #e2e8f0;
     --color-gray-300: #cbd5e1;
     --color-gray-400: #94a3b8;
-    --color-gray-500: #64748b;
-    --color-gray-600: #475569;
-    --color-gray-700: #334155;
-    --color-gray-800: #1e293b;
-    --color-gray-900: #0f172a;
+    --color-gray-500: #677162;
+    --color-gray-600: #3c4934;
+    --color-gray-700: #2d3a25;
+    --color-gray-800: #1c2815;
+    --color-gray-900: #162010;
     --color-success: #059669;
     --color-error: #dc2626;
     --font-display: 'Bebas Neue', sans-serif;
