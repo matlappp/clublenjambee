@@ -18,11 +18,12 @@ async function fetchDonations(db) {
 
 function aggregateByAthlete(donations) {
     const map = {};
-
     donations.forEach(d => {
         const key = d.member;
         const name = d.memberDisplayName || key;
         const amount = Number(d.amount) || 0;
+
+        if (!key && !d.memberDisplayName) return;
 
         if (!map[key]) {
             map[key] = { key, name, total: 0, count: 0 };
@@ -30,7 +31,6 @@ function aggregateByAthlete(donations) {
         map[key].total += amount;
         map[key].count += 1;
     });
-
     return Object.values(map).sort((a, b) => b.total - a.total);
 }
 
