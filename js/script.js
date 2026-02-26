@@ -15,7 +15,7 @@ const firebaseConfig = {
   appId: "1:344258526754:web:28568deed212b10162147b"*/
 };
 
-const GOFUNDME_URL = "https://gofund.me/7d33f9335";
+const GOFUNDME_URL = "https://www.gofundme.com/f/club-lenjambee-tremblant-les-amputes-de-guerre/donate?attribution_id=sl:0ee2e97a-f551-4143-9fd4-812b32ca3c61&lang=en_CA&ts=1770078134&utm_campaign=fp_sharesheet&utm_medium=customer&utm_source=copy_link&source=btn_donate";
 
 const elements = {
     header: document.querySelector('.header'),
