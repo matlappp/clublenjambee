@@ -34,6 +34,73 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="./assets/logo-vert.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./css/styles.css">
+    <style>
+/* ── Hero progress bar ── */
+.hero__progress {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto var(--space-12);
+    animation: fadeInUp 0.8s ease-out 0.5s backwards;
+}
+.hero__progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: var(--space-2);
+}
+.hero__progress-label {
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.6);
+}
+.hero__progress-amount {
+    font-family: var(--font-display);
+    font-size: var(--text-2xl);
+    color: var(--color-white);
+    letter-spacing: .02em;
+    line-height: 1;
+}
+.hero__progress-amount span {
+    font-family: var(--font-body);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    color: rgba(255,255,255,.45);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-left: var(--space-1);
+}
+.hero__progress-track {
+    height: 6px;
+    background: rgba(255,255,255,.15);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+.hero__progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
+    border-radius: var(--radius-full);
+    width: 0%;
+    transition: width 1.4s cubic-bezier(.22,1,.36,1);
+}
+.hero__progress-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--space-2);
+}
+.hero__progress-pct {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: var(--color-accent-light);
+}
+.hero__progress-goal {
+    font-size: var(--text-xs);
+    color: rgba(255,255,255,.4);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+}
+</style>
 </head>
 <body>
     <header class="header">
@@ -128,6 +195,22 @@
                     Donner pour la cause
                 </button>
                 <a href="#mission" class="btn btn--outline btn--large">En savoir plus</a>
+            </div>
+            <div class="hero__progress" id="heroProgress">
+                <div class="hero__progress-header">
+                    <span class="hero__progress-label">Dons recueillis</span>
+                    <div class="hero__progress-amount">
+                        <span id="heroTotal">—</span>
+                        <span>$</span>
+                    </div>
+                </div>
+                <div class="hero__progress-track">
+                    <div class="hero__progress-fill" id="heroFill"></div>
+                </div>
+                <div class="hero__progress-footer">
+                    <span class="hero__progress-pct" id="heroPct">—</span>
+                    <span class="hero__progress-goal">Objectif 30 000 $</span>
+                </div>
             </div>
             <div class="hero__stats">
                 <div class="hero__stat">
@@ -666,5 +749,52 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <script src="./js/script.js"></script>
+    <script>
+(function () {
+    const GOAL = 30000;
+ 
+    function initHeroProgress() {
+        try {
+            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+ 
+            db.collection('donations').get().then(function (snapshot) {
+                var total = 0;
+                snapshot.forEach(function (doc) {
+                    var d = doc.data();
+                    var amt = Number(d.amount);
+                    if (!isNaN(amt) && amt > 0) total += amt;
+                });
+                renderHeroProgress(total);
+            }).catch(function (err) {
+                console.warn('Hero progress fetch error:', err);
+            });
+        } catch (e) {
+            console.warn('Hero progress init error:', e);
+        }
+    }
+ 
+    function renderHeroProgress(total) {
+        var pct = Math.min((total / GOAL) * 100, 100);
+        var totalEl = document.getElementById('heroTotal');
+        var fillEl  = document.getElementById('heroFill');
+        var pctEl   = document.getElementById('heroPct');
+ 
+        if (totalEl) totalEl.textContent = total.toLocaleString('fr-CA', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+        if (pctEl)   pctEl.textContent   = pct.toFixed(1) + ' %';
+ 
+        // Animate after a short delay so the CSS transition plays
+        if (fillEl) {
+            setTimeout(function () { fillEl.style.width = pct + '%'; }, 200);
+        }
+    }
+ 
+    // firebaseConfig is defined in script.js — wait for DOM + scripts
+    document.addEventListener('DOMContentLoaded', function () {
+        // Small delay to ensure script.js has run and defined firebaseConfig
+        setTimeout(initHeroProgress, 100);
+    });
+})();
+</script>
 </body>
 </html>
