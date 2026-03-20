@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Commanditaires | Club L'Enjambée Tremblant</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Nos commanditaires – Club L'Enjambée Tremblant 2026">
+    <meta name="theme-color" content="#173306">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="./assets/logo-vert.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./css/styles.css">
+    <style>
+
+        /* ══════════════════════════════════════
+           PAGE HERO
+        ══════════════════════════════════════ */
+        .page-hero {
+            position: relative;
+            min-height: 42vh;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: var(--space-16);
+            overflow: hidden;
+        }
+        .page-hero__bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 60%, #0a1628 100%);
+            z-index: -1;
+        }
+        .page-hero__bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(ellipse at 15% 90%, rgba(197,48,48,.18) 0%, transparent 55%),
+                radial-gradient(ellipse at 85% 10%, rgba(44,82,130,.2) 0%, transparent 55%);
+        }
+        .page-hero__content {
+            text-align: center;
+            padding-top: calc(80px + var(--space-16));
+        }
+        .page-hero__title {
+            font-size: clamp(var(--text-5xl), 10vw, 7rem);
+            color: var(--color-white);
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            animation: fadeInUp .7s ease-out both;
+        }
+        .page-hero__subtitle {
+            color: rgba(255,255,255,.65);
+            font-size: var(--text-lg);
+            font-weight: 300;
+            margin-top: var(--space-3);
+            margin-bottom: var(--space-8);
+            animation: fadeInUp .7s ease-out .15s both;
+        }
+        .page-hero__actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-3);
+            animation: fadeInUp .7s ease-out .3s both;
+        }
+        @media (min-width: 480px) {
+            .page-hero__actions { flex-direction: row; justify-content: center; }
+        }
+
+        /* ══════════════════════════════════════
+           SPONSORS SECTION
+        ══════════════════════════════════════ */
+        .sponsors {
+            background-color: var(--color-off-white);
+        }
+
+        .sponsor-tier {
+            margin-bottom: var(--space-16);
+        }
+        .sponsor-tier:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Simple tier label */
+        .tier-heading {
+            font-size: var(--text-xs);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-3);
+            border-bottom: 2px solid currentColor;
+            opacity: .7;
+        }
+        .tier-heading--gold    { color: #a07b00; }
+        .tier-heading--silver  { color: var(--color-gray-500); }
+        .tier-heading--bronze  { color: #7a4820; }
+        .tier-heading--partner { color: var(--color-primary); }
+
+        .tier-divider {
+            border: none;
+            border-top: 1px solid var(--color-gray-200);
+            margin: var(--space-12) 0;
+        }
+
+        /* ── Sponsor card ── */
+        .sponsor-card {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: transform var(--transition-base), box-shadow var(--transition-base);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .sponsor-card + .sponsor-card {
+            margin-top: var(--space-5);
+        }
+        .sponsor-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Accent stripe — top on mobile, left on desktop */
+        .sponsor-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            z-index: 1;
+        }
+        .sponsor-card--gold::before    { background: linear-gradient(90deg,#c9a227,#f0d060,#c9a227); }
+        .sponsor-card--silver::before  { background: linear-gradient(90deg,#9ba0a8,#d0d4db,#9ba0a8); }
+        .sponsor-card--bronze::before  { background: linear-gradient(90deg,#8c5d2e,#c88b50,#8c5d2e); }
+        .sponsor-card--partner::before { background: linear-gradient(90deg,var(--color-primary),var(--color-primary-light),var(--color-primary)); }
+
+        /* Logo pane */
+        .sponsor-card__logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-8);
+            background: var(--color-white);
+            min-height: 130px;
+        }
+        .sponsor-card__logo img {
+            max-width: 200px;
+            max-height: 110px;
+            width: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform var(--transition-base);
+        }
+        .sponsor-card:hover .sponsor-card__logo img {
+            transform: scale(1.04);
+        }
+
+        /* Text pane */
+        .sponsor-card__body {
+            padding: var(--space-6) var(--space-8) var(--space-8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: var(--space-2);
+            border-top: 1px solid var(--color-gray-100);
+        }
+
+        /* Clickable sponsor name */
+        .sponsor-card__name {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-family: var(--font-display);
+            font-size: clamp(var(--text-2xl), 3vw, var(--text-3xl));
+            text-transform: uppercase;
+            letter-spacing: .03em;
+            color: var(--color-gray-900);
+            text-decoration: underline;
+            text-underline-offset: 5px;
+            text-decoration-color: var(--color-gray-300);
+            transition: color var(--transition-fast), text-decoration-color var(--transition-fast);
+        }
+        .sponsor-card__name:hover {
+            color: var(--color-accent);
+            text-decoration-color: var(--color-accent);
+        }
+        .sponsor-card__name svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+            opacity: .4;
+            transition: opacity var(--transition-fast), transform var(--transition-fast);
+        }
+        .sponsor-card__name:hover svg {
+            opacity: 1;
+            transform: translate(3px, -3px);
+        }
+
+        .sponsor-card__desc {
+            font-size: var(--text-sm);
+            color: var(--color-gray-600);
+            line-height: 1.7;
+            max-width: 560px;
+        }
+
+        /* ── Desktop: image LEFT, text RIGHT ── */
+        @media (min-width: 768px) {
+            .sponsor-card {
+                flex-direction: row;
+            }
+            /* Move stripe to left edge */
+            .sponsor-card::before {
+                top: 0; bottom: 0; right: auto;
+                width: 4px;
+                height: auto;
+            }
+            .sponsor-card__logo {
+                flex: 0 0 220px;
+                min-height: 160px;
+                border-right: 1px solid var(--color-gray-100);
+                border-top: none;
+            }
+            .sponsor-card--gold .sponsor-card__logo { flex-basis: 260px; }
+            .sponsor-card__body {
+                flex: 1;
+                padding: var(--space-8) var(--space-10);
+                border-top: none;
+            }
+        }
+
+        /* Ghost button for hero */
+        .btn--outline-white {
+            background-color: transparent;
+            color: var(--color-white);
+            border: 2px solid rgba(255,255,255,.5);
+        }
+        .btn--outline-white:hover {
+            background-color: rgba(255,255,255,.1);
+            border-color: var(--color-white);
+            transform: translateY(-2px);
+        }
+
+        /* Active nav link */
+        .nav__link--active::after { width: 100%; }
+        .header.scrolled .nav__link--active { color: var(--color-primary); }
+
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════
+         HEADER
+    ═══════════════════════════════════════════ -->
+    <header class="header">
+        <nav class="nav container">
+            <a href="/" class="nav__logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
+                  <defs><style>.cls-1{fill:#e7d7c4;}</style></defs>
+                  <g><g>
+                    <path class="cls-1" d="M200.96,510.94h65.5c1.33,0,2.4,1.08,2.4,2.4v155.23c0,1.33,1.08,2.4,2.4,2.4h48.04c1.33,0,2.4,1.08,2.4,2.4v83.27c0,1.33-1.08,2.4-2.4,2.4h-118.34c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4Z"/>
+                    <path class="cls-1" d="M314.51,513l-12.74,87.03c-.21,1.45.91,2.75,2.38,2.75h35.7c1.09,0,2.05-.74,2.32-1.79l22.92-87.03c.4-1.52-.75-3.02-2.32-3.02h-45.88c-1.19,0-2.21.88-2.38,2.06Z"/>
+                    <path class="cls-1" d="M392.25,510.94h118.11c1.33,0,2.4,1.08,2.4,2.4v78.13c0,1.33-1.08,2.4-2.4,2.4h-47.8c-1.33,0-2.4,1.08-2.4,2.4v8.56c0,1.33,1.08,2.4,2.4,2.4h37.66c1.33,0,2.4,1.08,2.4,2.4v54.14c0,1.33-1.08,2.4-2.4,2.4h-37.66c-1.33,0-2.4,1.08-2.4,2.4v9.24c0,1.33,1.08,2.4,2.4,2.4h51.11c1.33,0,2.4,1.08,2.4,2.4v74.01c0,1.33-1.08,2.4-2.4,2.4h-121.41c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4Z"/>
+                    <path class="cls-1" d="M540.01,510.94h60.01c.93,0,1.77.53,2.17,1.37l49.6,104.52.47-.34v-103.15c0-1.33,1.08-2.4,2.4-2.4h58.42c1.33,0,2.4,1.08,2.4,2.4v243.31c0,1.33-1.08,2.4-2.4,2.4h-60.01c-.93,0-1.77-.53-2.17-1.37l-49.6-104.52-.47.34v103.15c0,1.33-1.08,2.4-2.4,2.4h-58.42c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4Z"/>
+                    <path class="cls-1" d="M731.87,674.83c0-1.84,1.97-2.97,3.58-2.09,7.77,4.25,16.07,6.81,22.61,6.81,13.68,0,17.69-12.34,17.69-24.68v-141.53c0-1.33,1.08-2.4,2.4-2.4h65.5c1.33,0,2.4,1.08,2.4,2.4v144.96c0,34.95-6.84,62.37-19.34,79.16-13.68,18.51-33.03,25.36-54.73,25.36-16.13,0-30.94-4.76-39.18-10.93-.59-.45-.93-1.16-.93-1.9v-75.16Z"/>
+                    <path class="cls-1" d="M915.6,510.94h63.53c1.09,0,2.05.74,2.33,1.79l63.85,243.31c.4,1.52-.75,3.01-2.33,3.01h-70.84c-1.16,0-2.16-.83-2.37-1.98l-5.18-28.61c-.21-1.14-1.2-1.98-2.37-1.98h-35.19c-1.14,0-2.13.81-2.36,1.93l-5.82,28.7c-.23,1.12-1.21,1.93-2.36,1.93h-64.75c-1.58,0-2.73-1.49-2.33-3.01l63.85-243.31c.28-1.06,1.23-1.79,2.33-1.79ZM950.12,664.13c1.47,0,2.6-1.31,2.38-2.76l-7.14-47.62h-.47l-7.14,47.62c-.22,1.45.91,2.76,2.38,2.76h9.99Z"/>
+                    <path class="cls-1" d="M1057.52,510.94h61.75c.88,0,1.69.48,2.11,1.25l31.14,57.17c.92,1.69,3.35,1.67,4.24-.03l30.03-57.11c.42-.79,1.23-1.29,2.13-1.29h59.84c1.33,0,2.4,1.08,2.4,2.4v243.31c0,1.33-1.08,2.4-2.4,2.4h-65.5c-1.33,0-2.4-1.08-2.4-2.4v-118.57h-.47l-28.33,54.23c-.89,1.71-3.34,1.72-4.25.02l-29-54.25h-.47v118.57c0,1.33-1.08,2.4-2.4,2.4h-58.42c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4Z"/>
+                    <path class="cls-1" d="M1276.04,513.34c0-1.33,1.08-2.4,2.4-2.4h66.01c25.72,0,79.98,3.77,79.98,63.06,0,20.91-6.84,40.1-25.72,49.69v.69c24.77,13.37,30.43,36.67,30.43,58.94,0,65.46-48.13,75.74-81.39,75.74h-69.32c-1.33,0-2.4-1.08-2.4-2.4v-243.31ZM1348.94,611.69c8.96,0,13.21-6.85,13.21-15.42s-4.48-15.42-13.21-15.42h-.19c-1.33,0-2.4,1.08-2.4,2.4v26.04c0,1.33,1.08,2.4,2.4,2.4h.19ZM1349.41,692.57c11.09,0,16.28-8.57,16.28-19.19s-5.43-19.19-16.28-19.19h-.66c-1.33,0-2.4,1.08-2.4,2.4v33.57c0,1.33,1.08,2.4,2.4,2.4h.66Z"/>
+                    <path class="cls-1" d="M1449.87,510.94h118.11c1.33,0,2.4,1.08,2.4,2.4v78.13c0,1.33-1.08,2.4-2.4,2.4h-47.8c-1.33,0-2.4,1.08-2.4,2.4v8.56c0,1.33,1.08,2.4,2.4,2.4h37.66c1.33,0,2.4,1.08,2.4,2.4v54.14c0,1.33-1.08,2.4-2.4,2.4h-37.66c-1.33,0-2.4,1.08-2.4,2.4v9.24c0,1.33,1.08,2.4,2.4,2.4h51.11c1.33,0,2.4,1.08,2.4,2.4v74.01c0,1.33-1.08,2.4-2.4,2.4h-121.41c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4ZM1503.82,437.26h59.03c1.91,0,3.06,2.13,2.01,3.73l-33.87,51.4c-.44.67-1.2,1.08-2.01,1.08h-45.87c-1.7,0-2.87-1.72-2.23-3.3l20.71-51.4c.37-.91,1.25-1.51,2.23-1.51Z"/>
+                    <path class="cls-1" d="M1597.63,510.94h118.11c1.33,0,2.4,1.08,2.4,2.4v78.13c0,1.33-1.08,2.4-2.4,2.4h-47.8c-1.33,0-2.4,1.08-2.4,2.4v8.56c0,1.33,1.08,2.4,2.4,2.4h37.66c1.33,0,2.4,1.08,2.4,2.4v54.14c0,1.33-1.08,2.4-2.4,2.4h-37.66c-1.33,0-2.4,1.08-2.4,2.4v9.24c0,1.33,1.08,2.4,2.4,2.4h51.11c1.33,0,2.4,1.08,2.4,2.4v74.01c0,1.33-1.08,2.4-2.4,2.4h-121.41c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4Z"/>
+                  </g><g>
+                    <path class="cls-1" d="M1036.39,419.34l-21.47,8.12c-1.16.44-2.47-.08-3.01-1.2l-6.16-12.71c-.67-1.38-2.44-1.79-3.64-.85l-18.34,14.33c-.97.75-1.21,2.11-.57,3.16l19.4,31.42c.69,1.12,2.15,1.47,3.27.8l37.36-22.2c.94-.56,1.38-1.68,1.08-2.73l-4.76-16.56c-.39-1.35-1.85-2.08-3.16-1.58h0ZM1037.58,437.98l-30.1,17.89c-1.13.67-2.58.31-3.27-.8l-14.65-23.72c-.64-1.04-.4-2.4.57-3.16l10.24-8.01c1.21-.94,2.98-.53,3.64.85l5.48,11.31c.54,1.12,1.85,1.64,3.01,1.2l20.71-7.83c1.31-.5,2.77.23,3.16,1.58l2.29,7.97c.3,1.05-.14,2.17-1.08,2.73Z"/>
+                    <path class="cls-1" d="M858.57,255.16c-2.71,0-5.14,1.09-6.92,2.87-1.5,1.51-2.52,3.48-2.79,5.7-.09.7-.68,1.22-1.39,1.22h-2.01c-.84,0-1.5-.74-1.41-1.58.79-7.32,6.99-13.02,14.52-13.02,7.53,0,13.73,5.7,14.52,13.02.09.84-.56,1.58-1.41,1.58h-2.01c-.7,0-1.3-.52-1.39-1.22-.27-2.22-1.29-4.19-2.79-5.7-1.78-1.77-4.21-2.87-6.92-2.87ZM1122.04,255.16c-2.71,0-5.14,1.09-6.92,2.87-1.5,1.51-2.52,3.48-2.79,5.7-.09.7-.68,1.22-1.39,1.22h-2.01c-.84,0-1.5-.74-1.41-1.58.79-7.32,6.99-13.02,14.52-13.02,7.53,0,13.73,5.7,14.52,13.02.09.84-.56,1.58-1.41,1.58h-2.01c-.7,0-1.3-.52-1.39-1.22-.27-2.22-1.29-4.19-2.79-5.7-1.78-1.77-4.21-2.87-6.92-2.87ZM906.13,275.35l44.05,14.11c1.92.61,3.7-1.24,2.98-3.13-3.13-8.27-7.87-25.8,1.28-39.89,2.08-3.2,4.83-6.13,8.5-8.62,3.62-2.45,8.14-4.47,13.8-5.82.09-.02.19-.04.29-.06,2.68-.39,5.21-.57,7.58-.57,24.1,0,33.76,18.78,36.6,26,.56,1.42-.34,2.99-1.84,3.25l-2.93.49c-.61.1-1.01.7-.85,1.3,1.52,5.67,6.76,31.3-20.91,36.01-.23.04-1.19.13-2.47.25-2.44.22-3.04,3.53-.82,4.57l51.13,24.02h0c1.39.67,3.04-.13,3.38-1.63l3.74-16.43c.32-1.4,1.78-2.21,3.14-1.74l12.15,4.24c1.09.38,1.76,1.48,1.58,2.63l-6.24,41.41c-.24,1.6-1.96,2.51-3.42,1.81l-43.59-20.99-.12-.06-1.29-.71-30.77,34.54c-.65.73-.79,1.77-.37,2.65l13.73,28.34c.51,1.05.19,2.31-.76,3l-12.32,8.9c-1.13.82-2.72.5-3.45-.69l-21.89-35.46c-.96-1.55-3.22-1.51-4.13.06l-15.12,26.16c-.74,1.28-2.46,1.6-3.6.66l-49.02-40.13c-.92-.75-2.26-.72-3.14.08l-19.28,17.51c-1.19,1.08-3.08.71-3.78-.73l-3.34-6.89c-.42-.88-.28-1.92.37-2.65l24.91-27.97c.72-.8,1.88-1.03,2.85-.56l39.46,19.26c1.46.71,3.19-.2,3.43-1.8l7.76-51.86c.18-1.18-.53-2.3-1.67-2.65l-14.4-4.43c-1.33-.41-2.74.4-3.05,1.76l-3.63,15.85c-.34,1.49-1.98,2.29-3.37,1.64l-9.54-4.48c-.99-.46-1.54-1.54-1.34-2.61l6.62-36.07c.26-1.43,1.72-2.3,3.1-1.86ZM1192.13,361.41l11.06-67.97c.19-1.16-.49-2.29-1.61-2.66l-17.19-5.79c-1.36-.46-2.81.37-3.12,1.77l-6.91,31.93c-.33,1.51-1.97,2.32-3.37,1.67l-33.53-15.75c-1.89-.89-1.81-3.57.11-4.4.52-.22,1.04-.46,1.56-.71,3.65-1.76,7.38-4.29,10.23-8.01,5.45-7.09,5.29-14.7,4.49-24.16-.11-1.24.76-2.36,2-2.57l1.8-.3c1.43-.24,2.33-1.67,1.91-3.06-1.25-4.1-4.26-12.29-9.94-19.3-3.24-4-7.49-7.88-12.95-10.77-5.48-2.89-12.16-4.76-20.17-4.74-2.69,0-5.53.2-8.53.65h-.1c-6.26,1.46-11.43,3.73-15.64,6.57-6.32,4.28-10.42,9.85-12.86,15.74-2.46,5.88-3.32,12.06-3.32,17.72,0,4.51.65,8.8,1.26,11.81.36,1.8-1.35,3.31-3.09,2.75l-39.84-12.77c-1.38-.44-2.84.43-3.1,1.86l-7.15,38.97c-.28,1.55-1.96,2.41-3.39,1.74l-15.05-7.06c-1.89-.89-1.81-3.57.11-4.4.52-.22,1.04-.46,1.56-.71,15.93-7.74,15.83-19.55,14.71-32.17-.11-1.25.76-2.37,2-2.57l1.95-.33c1.4-.23,2.29-1.62,1.93-2.99-1-3.81-3.63-11.36-10.1-19.34-3.7-4.57-28.04-28.23-57.5-8.25-19.11,12.97-16.81,35.97-14.94,45.27.36,1.79-1.35,3.3-3.09,2.74l-39.82-12.76c-1.38-.44-2.84.43-3.1,1.86l-7.15,38.97c-.28,1.55-1.96,2.41-3.39,1.74l-15.05-7.06c-1.89-.89-1.81-3.57.11-4.4.52-.22,1.04-.46,1.56-.71,3.63-1.76,7.36-4.29,10.22-8.01,5.36-6.98,5.31-14.74,4.49-24.16-.11-1.25.76-2.37,2-2.57l1.81-.3c1.43-.24,2.33-1.67,1.91-3.06-1.25-4.09-4.25-12.26-9.95-19.3-3.24-4-7.47-7.88-12.95-10.77-5.46-2.89-12.16-4.76-20.17-4.74-2.69,0-5.53.2-8.53.65h-.08c-6.28,1.46-11.44,3.73-15.65,6.57-6.31,4.28-10.42,9.85-12.86,15.74-2.46,5.88-3.32,12.06-3.32,17.72,0,4.42.66,8.77,1.27,11.82.36,1.79-1.35,3.31-3.09,2.75l-39.85-12.77c-1.37-.44-2.82.42-3.09,1.84l-10.7,56.01c-.21,1.08.35,2.16,1.34,2.63l18.35,8.62c1.39.65,3.03-.15,3.37-1.65l6.17-27.39c.31-1.39,1.76-2.2,3.11-1.75l8.38,2.83c1.11.37,1.78,1.49,1.61,2.64l-6.28,41.32c-.24,1.6-1.97,2.51-3.43,1.8l-39.59-19.33c-.97-.47-2.13-.24-2.85.56l-29.5,33.11c-.65.73-.79,1.77-.37,2.65l7.54,15.59c.7,1.45,2.59,1.81,3.78.73l20.98-19.05c.88-.8,2.22-.83,3.14-.08l50.18,41.09c1.15.94,2.86.63,3.6-.66l13.93-24.09c.91-1.57,3.17-1.61,4.13-.06l46.41,75.16c.69,1.12,2.15,1.47,3.27.8l37.36-22.2c.94-.56,1.38-1.68,1.08-2.73l-4.76-16.57c-.39-1.35-1.85-2.08-3.16-1.58l-21.47,8.12c-1.16.44-2.47-.08-3.01-1.2l-17.71-36.53c-.47-.96-.24-2.11.55-2.83l18.34-16.65c.88-.8,2.22-.83,3.14-.08l50.19,41.09c1.15.94,2.86.63,3.6-.66l13.93-24.09c.91-1.57,3.17-1.61,4.13-.06l20.39,33.01c.73,1.19,2.32,1.5,3.45.69l19.78-14.29c.95-.68,1.26-1.95.76-3l-6.36-13.13c-.46-.96-.24-2.11.55-2.83l18.33-16.65c.88-.8,2.22-.84,3.14-.08l50.2,41.09c1.15.94,2.86.63,3.6-.66l13.93-24.09c.91-1.57,3.17-1.61,4.13-.06l46.41,75.16c.69,1.12,2.15,1.47,3.27.8l37.35-22.2c.94-.56,1.38-1.68,1.08-2.73l-4.75-16.57c-.39-1.35-1.85-2.08-3.16-1.59l-21.49,8.12c-1.16.44-2.47-.08-3.01-1.2l-19.28-39.8-6.14-12.68c-.42-.88-.28-1.92.37-2.65l24.93-27.98c.72-.8,1.88-1.03,2.85-.56l42.2,20.6c1.45.71,3.17-.18,3.43-1.77Z"/>
+                    <path class="cls-1" d="M983.38,258.02c1.78-1.77,4.21-2.87,6.92-2.87,2.71,0,5.14,1.09,6.92,2.87,1.5,1.51,2.52,3.48,2.79,5.7.09.7.68,1.22,1.39,1.22h2.01c.84,0,1.5-.74,1.41-1.58-.79-7.32-6.99-13.02-14.52-13.02-7.53,0-13.73,5.7-14.52,13.02-.09.84.56,1.58,1.41,1.58h2.01c.7,0,1.3-.52,1.39-1.22.27-2.22,1.29-4.19,2.79-5.7Z"/>
+                  </g></g>
+                  <g><g>
+                    <path class="cls-1" d="M210.76,851.35c-2.89-1.81-5.1-4.28-6.64-7.42-1.54-3.13-2.31-6.68-2.31-10.65s.77-7.51,2.31-10.65c1.54-3.14,3.75-5.61,6.64-7.41,2.89-1.81,6.25-2.71,10.1-2.71,2.89,0,5.52.54,7.91,1.62,2.38,1.08,4.31,2.63,5.77,4.64,1.46,2.02,2.29,4.36,2.48,7.01h-5.77c-.27-2.46-1.34-4.42-3.2-5.89s-4.16-2.19-6.9-2.19h-.58c-2.69,0-5.02.68-6.98,2.05-1.96,1.37-3.45,3.23-4.47,5.6-1.02,2.37-1.53,5.01-1.53,7.93s.51,5.57,1.53,7.93c1.02,2.37,2.51,4.23,4.47,5.6,1.96,1.37,4.29,2.05,6.98,2.05h.58c1.81,0,3.44-.34,4.91-1.01,1.46-.67,2.64-1.62,3.55-2.83.9-1.21,1.45-2.63,1.64-4.24h5.77c-.19,2.65-1.02,4.99-2.48,7.01-1.46,2.02-3.39,3.57-5.77,4.64-2.39,1.08-5.02,1.62-7.91,1.62-3.85,0-7.21-.9-10.1-2.71Z"/>
+                    <path class="cls-1" d="M244.81,813.09h5.77v35.2h23.66v5.19h-29.43v-40.39Z"/>
+                    <path class="cls-1" d="M285.35,852.21c-2.29-1.23-3.99-2.97-5.11-5.22-1.12-2.25-1.67-4.89-1.67-7.93v-25.97h5.77v25.39c0,3.35.79,5.92,2.37,7.7,1.58,1.79,3.87,2.68,6.87,2.68h.58c3,0,5.29-.9,6.87-2.68,1.58-1.79,2.37-4.36,2.37-7.7v-25.39h5.77v25.97c0,4.58-1.32,8.22-3.95,10.94-2.64,2.71-6.42,4.07-11.34,4.07-3.39,0-6.22-.61-8.51-1.85Z"/>
+                    <path class="cls-1" d="M319.19,813.09h17.6c2.12,0,4.06.43,5.83,1.3,1.77.87,3.16,2.11,4.18,3.72s1.53,3.5,1.53,5.65-.6,4.14-1.79,5.71c-1.19,1.58-2.79,2.75-4.79,3.52,2.31.38,4.13,1.41,5.45,3.09,1.33,1.67,1.99,3.82,1.99,6.43,0,2.15-.54,4.07-1.62,5.74s-2.52,2.96-4.33,3.87c-1.81.91-3.77,1.36-5.89,1.36h-18.18v-40.39ZM340.77,828.78c1.19-1.08,1.79-2.56,1.79-4.44s-.6-3.37-1.79-4.44c-1.19-1.08-2.81-1.62-4.85-1.62h-10.96v12.12h10.96c2.04,0,3.65-.54,4.85-1.62ZM341.47,846.61c1.31-1.11,1.96-2.67,1.96-4.67s-.65-3.56-1.96-4.68c-1.31-1.11-3.06-1.67-5.25-1.67h-11.25v12.7h11.25c2.19,0,3.94-.56,5.25-1.67Z"/>
+                    <path class="cls-1" d="M371.53,813.09h14.43c3.73,0,7.01.81,9.84,2.42s5.02,3.94,6.58,6.98c1.56,3.04,2.34,6.64,2.34,10.79s-.78,7.75-2.34,10.79c-1.56,3.04-3.75,5.37-6.58,6.98s-6.11,2.42-9.84,2.42h-14.43v-40.39ZM392.74,846.58c2.02-1.13,3.56-2.83,4.62-5.08,1.06-2.25,1.59-4.99,1.59-8.22,0-4.89-1.17-8.61-3.52-11.17-2.35-2.56-5.69-3.84-10.04-3.84h-8.08v30.01h8.08c2.89,0,5.34-.57,7.36-1.7Z"/>
+                    <path class="cls-1" d="M412.79,813.09h29.43v5.19h-23.66v11.83h20.2v5.2h-20.2v12.98h24.24v5.19h-30.01v-40.39Z"/>
+                    <path class="cls-1" d="M473.04,818.28h-14.43v-5.19h34.62v5.19h-14.43v35.2h-5.77v-35.2Z"/>
+                    <path class="cls-1" d="M499.41,813.09h17.31c2.46,0,4.65.47,6.58,1.41,1.92.94,3.42,2.25,4.5,3.92,1.08,1.67,1.62,3.55,1.62,5.63,0,2.54-.63,4.73-1.88,6.58s-2.84,3.06-4.76,3.64c2.27,0,3.85.43,4.73,1.3.89.86,1.33,2.32,1.33,4.36v13.56h-5.77v-12.12c0-1.58-.28-2.65-.84-3.2-.56-.56-1.62-.84-3.2-.84h-13.85v16.16h-5.77v-40.39ZM520.01,831.18c1.19-.63,2.1-1.5,2.71-2.6.61-1.1.92-2.32.92-3.66,0-2.15-.68-3.8-2.05-4.93-1.37-1.13-3.28-1.7-5.74-1.7h-10.68v13.85h10.68c1.58,0,2.96-.32,4.15-.95Z"/>
+                    <path class="cls-1" d="M538.65,813.09h5.77v40.39h-5.77v-40.39Z"/>
+                    <path class="cls-1" d="M566,813.09h7.39l15.87,40.39h-6l-14.31-36.64h1.21l-14.25,36.64h-5.89l15.98-40.39ZM559.08,837.9h21.06v5.19h-21.06v-5.19Z"/>
+                    <path class="cls-1" d="M600.4,818.28h-14.43v-5.19h34.62v5.19h-14.43v35.2h-5.77v-35.2Z"/>
+                    <path class="cls-1" d="M626.77,813.09h5.77v17.6h20.49v-17.6h5.77v40.39h-5.77v-17.6h-20.49v17.6h-5.77v-40.39Z"/>
+                    <path class="cls-1" d="M669.18,813.09h5.77v35.2h23.66v5.19h-29.43v-40.39Z"/>
+                    <path class="cls-1" d="M709.23,851.55c-2.89-1.67-5.15-4.08-6.78-7.21-1.64-3.14-2.45-6.82-2.45-11.05s.82-7.92,2.45-11.05,3.9-5.54,6.78-7.21c2.89-1.67,6.16-2.51,9.81-2.51s6.92.84,9.81,2.51c2.89,1.67,5.15,4.08,6.78,7.21s2.45,6.82,2.45,11.05-.82,7.92-2.45,11.05c-1.64,3.14-3.9,5.54-6.78,7.21s-6.16,2.51-9.81,2.51-6.93-.84-9.81-2.51ZM726.02,846.99c1.96-1.25,3.5-3.05,4.62-5.4s1.67-5.12,1.67-8.31-.56-5.96-1.67-8.31-2.65-4.15-4.62-5.4c-1.96-1.25-4.19-1.87-6.69-1.87h-.58c-2.5,0-4.73.62-6.69,1.87-1.96,1.25-3.5,3.05-4.62,5.4s-1.67,5.12-1.67,8.31.56,5.96,1.67,8.31,2.65,4.15,4.62,5.4c1.96,1.25,4.19,1.88,6.69,1.88h.58c2.5,0,4.73-.62,6.69-1.88Z"/>
+                    <path class="cls-1" d="M746.11,813.09h8.08l19.62,34.97-.86.23v-35.2h5.77v40.39h-8.08l-19.62-34.97.87-.23v35.2h-5.77v-40.39Z"/>
+                  </g><g>
+                    <path class="cls-1" d="M1376.97,818.28h-14.43v-5.19h34.63v5.19h-14.43v35.2h-5.77v-35.2Z"/>
+                    <path class="cls-1" d="M1403.34,813.09h17.31c2.46,0,4.65.47,6.58,1.41,1.92.94,3.42,2.25,4.5,3.92,1.08,1.67,1.62,3.55,1.62,5.63,0,2.54-.62,4.73-1.87,6.58s-2.84,3.06-4.76,3.64c2.27,0,3.85.43,4.73,1.3.88.86,1.33,2.32,1.33,4.36v13.56h-5.77v-12.12c0-1.58-.28-2.65-.84-3.2-.56-.56-1.63-.84-3.2-.84h-13.85v16.16h-5.77v-40.39ZM1423.94,831.18c1.19-.63,2.1-1.5,2.71-2.6s.92-2.32.92-3.66c0-2.15-.68-3.8-2.05-4.93s-3.28-1.7-5.74-1.7h-10.68v13.85h10.68c1.58,0,2.96-.32,4.15-.95Z"/>
+                    <path class="cls-1" d="M1442.58,813.09h29.43v5.19h-23.66v11.83h20.2v5.2h-20.2v12.98h24.24v5.19h-30.01v-40.39Z"/>
+                    <path class="cls-1" d="M1480.21,813.09h9.58l12.75,36.93h-1.33l12.47-36.93h9.52v40.39h-5.77v-37.1l.52.06-12.41,37.05h-7.39l-12.76-36.99.58-.11v37.1h-5.77v-40.39Z"/>
+                    <path class="cls-1" d="M1533.58,813.09h17.6c2.12,0,4.06.43,5.83,1.3,1.77.87,3.16,2.11,4.18,3.72s1.53,3.5,1.53,5.65-.6,4.14-1.79,5.71c-1.19,1.58-2.79,2.75-4.79,3.52,2.31.38,4.13,1.41,5.45,3.09,1.33,1.67,1.99,3.82,1.99,6.43,0,2.15-.54,4.07-1.62,5.74-1.08,1.67-2.52,2.96-4.33,3.87-1.81.91-3.77,1.36-5.88,1.36h-18.18v-40.39ZM1555.17,828.78c1.19-1.08,1.79-2.56,1.79-4.44s-.6-3.37-1.79-4.44c-1.19-1.08-2.81-1.62-4.85-1.62h-10.97v12.12h10.97c2.04,0,3.65-.54,4.85-1.62ZM1555.86,846.61c1.31-1.11,1.96-2.67,1.96-4.67s-.65-3.56-1.96-4.68c-1.31-1.11-3.06-1.67-5.25-1.67h-11.25v12.7h11.25c2.19,0,3.94-.56,5.25-1.67Z"/>
+                    <path class="cls-1" d="M1571.84,813.09h5.77v35.2h23.66v5.19h-29.43v-40.39Z"/>
+                    <path class="cls-1" d="M1618.65,813.09h7.39l15.87,40.39h-6l-14.31-36.64h1.21l-14.25,36.64h-5.89l15.99-40.39ZM1611.72,837.9h21.06v5.19h-21.06v-5.19Z"/>
+                    <path class="cls-1" d="M1647.56,813.09h8.08l19.62,34.97-.87.23v-35.2h5.77v40.39h-8.08l-19.62-34.97.87-.23v35.2h-5.77v-40.39Z"/>
+                    <path class="cls-1" d="M1700.76,818.28h-14.43v-5.19h34.62v5.19h-14.43v35.2h-5.77v-35.2Z"/>
+                  </g></g>
+                </svg>
+            </a>
+            <ul class="nav__menu">
+                <li><a href="/#mission"        class="nav__link">Mission</a></li>
+                <li><a href="/#defis"          class="nav__link">Les Défis</a></li>
+                <li><a href="/#cause"          class="nav__link">La Cause</a></li>
+                <li><a href="/#fonctionnement" class="nav__link">Comment ça marche</a></li>
+                <li><a href="/commanditaires" class="nav__link nav__link--active">Commanditaires</a></li>
+            </ul>
+            <button class="btn btn--primary nav__cta" data-open-modal>Donner</button>
+            <button class="nav__mobile-toggle" aria-label="Menu mobile">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- ═══════════════════════════════════════════
+         PAGE HERO
+    ═══════════════════════════════════════════ -->
+    <section class="page-hero">
+        <div class="page-hero__bg"></div>
+        <div class="page-hero__content container">
+            <span class="hero__badge">Triathlon Caritatif 2026</span>
+            <h1 class="page-hero__title">Nos Commanditaires</h1>
+            <p class="page-hero__subtitle">Leur générosité rend tout cela possible.</p>
+            <div class="page-hero__actions">
+                <a href="mailto:info@clublenjambee.ca" class="btn btn--outline btn--large">
+                    <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    Devenir commanditaire
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         SPONSORS
+    ═══════════════════════════════════════════ -->
+    <section class="section sponsors">
+        <div class="container">
+
+            <!-- ── PRINCIPAL ── -->
+            <div class="sponsor-tier">
+
+                <div class="sponsor-card sponsor-card--gold">
+                    <div class="sponsor-card__logo">
+                        <img src="https://ssmscdn.yp.ca/image/resize/d2d2a128-9916-45df-aac7-d3e66073b8f2/ypui-m-mp-pic-gal-lg/idolem-hot-yoga-chaud-verdun-1.jpg" alt="Idolem" loading="lazy">
+                    </div>
+                    <div class="sponsor-card__body">
+                        <a href="https://www.idolem.com" target="_blank" rel="noopener" class="sponsor-card__name">
+                            Idolem
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                        <p class="sponsor-card__desc">Studio de yoga chaud et wellness à Montréal. Idolem accompagne nos athlètes dans leur récupération et leur bien-être tout au long de la saison d'entraînement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="tier-divider">
+
+            <!-- ── ARGENT ── -->
+            <div class="sponsor-tier">
+
+                <div class="sponsor-card sponsor-card--silver" style="opacity:.45; border:2px dashed var(--color-gray-300); box-shadow:none; background:var(--color-gray-50); pointer-events:none;">
+                    <div class="sponsor-card__logo" style="background:transparent; min-height:100px;">
+                        <svg viewBox="0 0 140 60" fill="none" width="140"><rect width="140" height="60" rx="6" fill="#e2e8f0"/><text x="70" y="36" font-family="sans-serif" font-size="13" fill="#94a3b8" text-anchor="middle">À venir</text></svg>
+                    </div>
+                    <div class="sponsor-card__body"><span style="font-size:var(--text-sm);color:var(--color-gray-400);font-style:italic;">Place disponible</span></div>
+                </div>
+            </div>
+
+            <hr class="tier-divider">
+
+            <!-- ── BRONZE ── -->
+            <div class="sponsor-tier">
+
+                <div class="sponsor-card sponsor-card--bronze">
+                    <div class="sponsor-card__logo">
+                        <img src="https://www.groupetcj.ca/gx/partage2.jpg" alt="Therrien Couture Joli-Cœur" loading="lazy">
+                    </div>
+                    <div class="sponsor-card__body">
+                        <a href="https://www.groupetcj.ca" target="_blank" rel="noopener" class="sponsor-card__name">
+                            Therrien Couture Joli-Cœur
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                        <p class="sponsor-card__desc">Cabinet d'avocats québécois offrant des services juridiques en droit des affaires, fiscalité et litige. Un partenaire de confiance qui croit au dépassement de soi.</p>
+                    </div>
+                </div>
+
+                <div class="sponsor-card sponsor-card--bronze">
+                    <div class="sponsor-card__logo">
+                        <img src="https://media.licdn.com/dms/image/v2/C560BAQE8HRm6t5Pj-w/company-logo_200_200/company-logo_200_200/0/1679676750428/kolostat_logo?e=2147483647&v=beta&t=j5SYjaDWa8yjQsnU4coAPSBEIm596aOtNxzUFhROEE0" alt="Kolostat" loading="lazy">
+                    </div>
+                    <div class="sponsor-card__body">
+                        <a href="https://www.kolostat.com" target="_blank" rel="noopener" class="sponsor-card__name">
+                            Kolostat
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                        <p class="sponsor-card__desc">Entreprise spécialisée en mécanique du bâtiment, plomberie et génie mécanique. Leur ancrage dans la communauté et leur engagement font d'eux un partenaire naturel de notre initiative.</p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="tier-divider">
+
+            <!-- ── PRODUITS & PARTENAIRES ── -->
+            <div class="sponsor-tier">
+
+                <div class="sponsor-card sponsor-card--partner">
+                    <div class="sponsor-card__logo">
+                        <img src="https://s3-symbol-logo.tradingview.com/guru-organic-energy-co--600.png" alt="Guru" loading="lazy">
+                    </div>
+                    <div class="sponsor-card__body">
+                        <a href="https:/https://guruenergy.com/" target="_blank" rel="noopener" class="sponsor-card__name">
+                            Guru
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                        <p class="sponsor-card__desc">Boisson énergisante biologique québécoise. Guru fournit à nos athlètes le carburant naturel dont ils ont besoin pour repousser leurs limites à l'entraînement et sur la ligne de départ.</p>
+                    </div>
+                </div>
+
+                <div class="sponsor-card sponsor-card--partner">
+                    <div class="sponsor-card__logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiFjNBmoOBUYq-KMITe3jDPXCNRxNqr0r5gA&s" alt="DUUS" loading="lazy">
+                    </div>
+                    <div class="sponsor-card__body">
+                        <a href="https://duusenergy.com/" target="_blank" rel="noopener" class="sponsor-card__name">
+                            DUUS
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                        <p class="sponsor-card__desc">Gels et nutrition sport haute performance, ainsi que des codes promotionnels pour les épreuves Hyrox. DUUS équipe nos athlètes pour qu'ils donnent leur maximum, kilomètre après kilomètre.</p>
+                    </div>
+                </div>
+
+                <div class="sponsor-card sponsor-card--partner">
+                    <div class="sponsor-card__logo">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVrJGSATL5pIX8Wh0zkjoQaVBSDD9E8PUmtQ&s" alt="Chalut Auto" loading="lazy">
+                    </div>
+                    <div class="sponsor-card__body">
+                        <a href="https://www.chalutauto.com" target="_blank" rel="noopener" class="sponsor-card__name">
+                            Chalut Auto
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                        </a>
+                        <p class="sponsor-card__desc">Concessionnaire automobile de confiance dans la région. Chalut Auto soutient notre mission avec générosité, témoignant de leur engagement solide dans la communauté locale.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════
+         FOOTER
+    ═══════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <span class="footer__logo">L'Enjambée Tremblant</span>
+                    <p class="footer__tagline">L'effort au service d'une cause</p>
+                </div>
+                <div class="footer__cause">
+                    <p>Fièrement au profit des</p>
+                    <span class="footer__cause-name">
+                        <a href="https://www.amputesdeguerre.ca/" target="_blank">Amputés de guerre du Canada</a>
+                    </span>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2026 Club L'Enjambée Tremblant. Tous droits réservés. Réalisé par <a href="https://www.matlap.ca/" target="_blank">Matlap Design</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal" id="donationModal" aria-hidden="true">
+        <div class="modal__overlay" data-close-modal></div>
+        <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <button class="modal__close" data-close-modal aria-label="Fermer">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <div class="modal__content" id="formView">
+                <div class="modal__header">
+                    <h2 id="modalTitle" class="modal__title">Enregistrer votre don</h2>
+                    <p class="modal__subtitle">Remplissez ce formulaire, puis finalisez votre don sur GoFundMe.</p>
+                </div>
+                
+                <form id="donationForm" class="donation-form" novalidate>
+                    <div class="form__row">
+                        <div class="form__group">
+                            <label for="firstName" class="form__label">Prénom <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="firstName" 
+                                name="firstName" 
+                                class="form__input" 
+                                required
+                                autocomplete="given-name"
+                            >
+                            <span class="form__error" id="firstNameError"></span>
+                        </div>
+                        <div class="form__group">
+                            <label for="lastName" class="form__label">Nom <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                class="form__input" 
+                                required
+                                autocomplete="family-name"
+                            >
+                            <span class="form__error" id="lastNameError"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="email" class="form__label">Courriel <span class="required">*</span></label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form__input" 
+                            required
+                            autocomplete="email"
+                        >
+                        <span class="form__error" id="emailError"></span>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="member" class="form__label">Pour quel athlète donnes-tu ? <span class="required">*</span></label>
+                        <select id="member" name="member" class="form__select" required="">
+                            <option value="">Sélectionner un membre</option>
+                            <option value="public">Don du public</option>
+                            <option disabled>────────────</option>
+                            <option value="ann-fred-lambert">Ann-Fred Lambert</option>
+                            <option value="arielle-cosgrove">Arielle Cosgrove</option>
+                            <option value="cedric-hebert">Cédric Hébert</option>
+                            <option value="charles-goupil">Charles Goupil</option>
+                            <option value="edouard-dufault">Édouard Dufault</option>
+                            <option value="eloi-boisteau">Eloi Boisteau</option>
+                            <option value="guillaume-foisy">Guillaume Foisy</option>
+                            <option value="gabriel-racine">Gabriel Racine</option>
+                            <option value="henri-fortier">Henri Fortier</option>
+                            <option value="jeremie-couture">Jérémie Couture</option>
+                            <option value="josh-robin">Josh Robin</option>
+                            <option value="julien-dubord">Julien Dubord</option>
+                            <option value="justin-barriere">Justin Barrière</option>
+                            <option value="justin-cote">Justin Côté</option>
+                            <option value="leandre-baudoux">Léandre Baudoux</option>
+                            <option value="louis-lessard">Louis Lessard</option>
+                            <option value="martin-dube">Martin Dubé</option>
+                            <option value="matheo-guay">Matheo Guay</option>
+                            <option value="mathis-caron">Mathis Caron</option>
+                            <option value="matis-boulay">Matis Boulay</option>
+                            <option value="mathys-patenaude">Mathys Patenaude</option>
+                            <option value="pierre-hugo-bousquet">Pierre-Hugo Bousquet</option>
+                            <option value="raphael-gingras">Raphael Gingras</option>
+                            <option value="simon-voghel">Simon Voghel</option>
+                            <option value="theo-dube-gosselin">Theo Dubé-Gosselin</option>
+                            <option value="vincent-fradet">Vincent Fradet</option>
+                            <option value="william-lowe">William Lowe</option>
+                            <option value="william-savoie">William Savoie</option>
+                            <option value="william-yelle">William Yelle</option>
+                        </select>
+                        <span class="form__error" id="memberError"></span>
+                    </div>
+                    
+                    <div class="form__group">
+                        <label for="amount" class="form__label">Montant du don ($) <span class="required">*</span></label>
+                        <div class="form__input-wrapper">
+                            <span class="form__input-prefix">$</span>
+                            <input 
+                                type="number" 
+                                id="amount" 
+                                name="amount" 
+                                class="form__input form__input--with-prefix" 
+                                min="1" 
+                                step="1"
+                                required
+                            >
+                        </div>
+                        <span class="form__error" id="amountError"></span>
+                    </div>
+                    
+                    <div class="form__group form__group--checkbox">
+                        <label class="form__checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="taxReceipt" 
+                                name="taxReceipt" 
+                                class="form__checkbox"
+                            >
+                            <span class="form__checkbox-custom"></span>
+                            <span>Je souhaite recevoir un reçu d'impôt</span>
+                        </label>
+                    </div>
+                    
+                    <div class="form__tax-fields" id="taxFields" hidden>
+                        <div class="form__tax-header">
+                            <h4>Informations pour le reçu d'impôt</h4>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="address" class="form__label">Adresse complète <span class="required">*</span></label>
+                            <input 
+                                type="text" 
+                                id="address" 
+                                name="address" 
+                                class="form__input"
+                                autocomplete="street-address"
+                            >
+                            <span class="form__error" id="addressError"></span>
+                        </div>
+                        
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label for="city" class="form__label">Ville <span class="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="city" 
+                                    name="city" 
+                                    class="form__input"
+                                    autocomplete="address-level2"
+                                >
+                                <span class="form__error" id="cityError"></span>
+                            </div>
+                            <div class="form__group">
+                                <label for="province" class="form__label">Province <span class="required">*</span></label>
+                                <select id="province" name="province" class="form__select" autocomplete="address-level1">
+                                    <option value="">Sélectionner</option>
+                                    <option value="QC">Québec</option>
+                                    <option value="ON">Ontario</option>
+                                    <option value="BC">Colombie-Britannique</option>
+                                    <option value="AB">Alberta</option>
+                                    <option value="MB">Manitoba</option>
+                                    <option value="SK">Saskatchewan</option>
+                                    <option value="NS">Nouvelle-Écosse</option>
+                                    <option value="NB">Nouveau-Brunswick</option>
+                                    <option value="NL">Terre-Neuve-et-Labrador</option>
+                                    <option value="PE">Île-du-Prince-Édouard</option>
+                                    <option value="NT">Territoires du Nord-Ouest</option>
+                                    <option value="YT">Yukon</option>
+                                    <option value="NU">Nunavut</option>
+                                </select>
+                                <span class="form__error" id="provinceError"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form__row">
+                            <div class="form__group">
+                                <label for="postalCode" class="form__label">Code postal <span class="required">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="postalCode" 
+                                    name="postalCode" 
+                                    class="form__input"
+                                    placeholder="A1A 1A1"
+                                    autocomplete="postal-code"
+                                >
+                                <span class="form__error" id="postalCodeError"></span>
+                            </div>
+                            <div class="form__group">
+                                <label for="phone" class="form__label">Téléphone <span class="required">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone" 
+                                    class="form__input"
+                                    placeholder="(514) 555-0123"
+                                    autocomplete="tel"
+                                >
+                                <span class="form__error" id="phoneError"></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form__group form__group--checkbox">
+                        <label class="form__checkbox-label">
+                            <input 
+                                type="checkbox" 
+                                id="gofundmeConfirm" 
+                                name="gofundmeConfirm" 
+                                class="form__checkbox"
+                                required
+                            >
+                            <span class="form__checkbox-custom"></span>
+                            <span>J'ai compris que je dois finaliser mon don sur GoFundMe <span class="required">*</span></span>
+                        </label>
+                        <span class="form__error" id="gofundmeConfirmError"></span>
+                    </div>
+                    
+                    <div class="form__actions">
+                        <button type="submit" class="btn btn--primary btn--large btn--full" id="submitBtn">
+                            <span class="btn__text">Continuer vers GoFundMe</span>
+                            <span class="btn__loader" hidden>
+                                <svg class="spinner" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Message de succès -->
+            <div class="modal__content modal__success" id="successView" hidden>
+                <div class="success__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h2 class="success__title">Merci pour votre générosité !</h2>
+                <p class="success__message">
+                    Votre intention de don a été enregistrée avec succès. 
+                    Pour finaliser votre don, veuillez vous rendre sur GoFundMe.
+                </p>
+                <div class="success__details" id="donationSummary">
+                </div>
+                <div class="success__actions">
+                    <a href="#" class="btn btn--primary btn--large" id="gofundmeLink" target="_blank" rel="noopener noreferrer">
+                        Accéder à GoFundMe
+                        <svg class="btn__icon btn__icon--right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function(){
+            function handleScroll(){
+                var scrolled = window.scrollY > 50;
+                var header = document.querySelector('header.header');
+                if(header) header.classList.toggle('scrolled', scrolled);
+            }
+            window.addEventListener('scroll', handleScroll);
+            handleScroll();
+
+            var toggle = document.querySelector('.nav__mobile-toggle');
+            var menu   = document.querySelector('.nav__menu');
+            if(toggle && menu){
+                toggle.addEventListener('click', function(){
+                    menu.classList.toggle('is-open');
+                    toggle.classList.toggle('is-active');
+                });
+                document.querySelectorAll('.nav__link').forEach(function(link){
+                    link.addEventListener('click', function(){
+                        menu.classList.remove('is-open');
+                        toggle.classList.remove('is-active');
+                    });
+                });
+            }
+        })();
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script src="./js/script.js"></script>
+</body>
+</html>
