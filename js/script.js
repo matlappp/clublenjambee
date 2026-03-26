@@ -282,13 +282,16 @@ async function handleFormSubmit(event) {
     
     try {
         const formData = prepareFormData();
-        await submitToFirebase(formData);
-        // Redirect straight to GoFundMe — no summary screen
-        window.open(GOFUNDME_URL, '_blank');
-        closeModal();
+        // Fire-and-forget: send to Firebase but don't wait for it
+        // This way we can redirect immediately in the same user-gesture,
+        // which Safari & iOS require for navigation/popups.
+        submitToFirebase(formData).catch(function (err) {
+            console.error('Firebase background save error:', err);
+        });
+        // Navigate in the same tab — works on all browsers including iOS Safari
+        window.location.href = GOFUNDME_URL;
     } catch (error) {
         showSubmitError(error);
-    } finally {
         setButtonLoading(false);
     }
 }
