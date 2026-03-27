@@ -14,14 +14,12 @@
     background-color: var(--color-primary);
 }
 
-/* ── Dashboard layout ── */
 .dashboard {
     max-width: 960px;
     margin: 0 auto;
     padding: var(--space-24) 1.5rem 4rem;
 }
 
-/* ── Header ── */
 .dashboard__header {
     display: flex;
     justify-content: space-between;
@@ -64,7 +62,6 @@
     letter-spacing: 0.05em;
 }
 
-/* ── Loading ── */
 .loading {
     text-align: center;
     padding: 4rem 1rem;
@@ -91,13 +88,11 @@
     color: var(--color-error);
 }
 
-/* ── Grid ── */
 .athlete-grid {
     display: grid;
     gap: 0.75rem;
 }
 
-/* ── Athlete card ── */
 .athlete-card {
     display: flex;
     flex-direction: column;
@@ -128,7 +123,6 @@
     }
 }
 
-/* ── Toggle button (the clickable top part) ── */
 .athlete-card__toggle {
     display: flex;
     align-items: center;
@@ -147,7 +141,6 @@
     background: rgba(255, 255, 255, 0.02);
 }
 
-/* ── Info (left side of toggle) ── */
 .athlete-card__info {
     min-width: 0;
     flex: 1;
@@ -185,7 +178,6 @@
     color: var(--text-muted);
 }
 
-/* ── Amount + chevron (right side of toggle) ── */
 .athlete-card__amount {
     text-align: right;
     flex-shrink: 0;
@@ -214,7 +206,6 @@
     opacity: 0.8;
 }
 
-/* ── Donors dropdown (appears BELOW the toggle) ── */
 .athlete-card__donors {
     max-height: 0;
     overflow: hidden;
@@ -263,14 +254,12 @@
     opacity: 0.65;
 }
 
-/* ── Empty state ── */
 .empty {
     text-align: center;
     padding: 4rem 1rem;
     color: var(--text-muted);
 }
 
-/* ── Responsive ── */
 @media (max-width: 600px) {
     .dashboard {
         padding: var(--space-24) 1rem 3rem;
