@@ -33,114 +33,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="./assets/logo-vert.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./css/styles.css">
-    <style>
-/* ── Hero progress bar ── */
-.hero__progress {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto var(--space-12);
-    animation: fadeInUp 0.8s ease-out 0.5s backwards;
-}
-.hero__progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: var(--space-2);
-}
-.hero__progress-label {
-    font-size: var(--text-xs);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: .1em;
-    color: rgba(255,255,255,.6);
-}
-.hero__progress-amount {
-    font-family: var(--font-display);
-    font-size: var(--text-2xl);
-    color: var(--color-white);
-    letter-spacing: .02em;
-    line-height: 1;
-}
-.hero__progress-amount span {
-    font-family: var(--font-body);
-    font-size: var(--text-xs);
-    font-weight: 600;
-    color: rgba(255,255,255,.45);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    margin-left: var(--space-1);
-}
-.hero__progress-track {
-    height: 6px;
-    background: rgba(255,255,255,.15);
-    border-radius: var(--radius-full);
-    overflow: hidden;
-}
-.hero__progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-accent-light), var(--color-accent));
-    border-radius: var(--radius-full);
-    width: 0%;
-    transition: width 1.4s cubic-bezier(.22,1,.36,1);
-}
-.hero__progress-footer {
-    display: flex;
-    justify-content: space-between;
-    margin-top: var(--space-2);
-}
-.hero__progress-pct {
-    font-size: var(--text-xs);
-    font-weight: 700;
-    color: var(--color-accent-light);
-}
-.hero__progress-goal {
-    font-size: var(--text-xs);
-    color: rgba(255,255,255,.4);
-    text-transform: uppercase;
-    letter-spacing: .08em;
-}
-
-/* ── Submit button two-line layout ── */
-.btn__content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2px;
-}
-.btn__main-text {
-    font-size: inherit;
-    font-weight: 700;
-    line-height: 1.2;
-}
-.btn__sub-text {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-size: 0.7em;
-    font-weight: 400;
-    opacity: 0.75;
-    line-height: 1.2;
-}
-.btn__sub-text svg {
-    width: 0.85em;
-    height: 0.85em;
-    flex-shrink: 0;
-}
-</style>
+    <link rel="stylesheet" href="./css/styles.css?v=1">
 </head>
 <body>
     <header class="header">
         <nav class="nav container">
             <a href="#" class="nav__logo">
                 <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 1920 1080">
-                  <defs>
-                    <style>
-                      .cls-1 {
-                        fill: #e7d7c4;
-                      }
-                    </style>
-                  </defs>
                   <g>
                     <g>
                       <path class="cls-1" d="M200.96,510.94h65.5c1.33,0,2.4,1.08,2.4,2.4v155.23c0,1.33,1.08,2.4,2.4,2.4h48.04c1.33,0,2.4,1.08,2.4,2.4v83.27c0,1.33-1.08,2.4-2.4,2.4h-118.34c-1.33,0-2.4-1.08-2.4-2.4v-243.31c0-1.33,1.08-2.4,2.4-2.4Z"/>
