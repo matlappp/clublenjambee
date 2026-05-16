@@ -393,7 +393,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero__content {
     text-align: center;
-    padding: var(--space-20) 1.5rem;
+    padding: var(--space-24) 1.5rem;
 }
 
 .hero__badge {
@@ -448,6 +448,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .hero__stat {
+    flex: 1;
     text-align: center;
 }
 
