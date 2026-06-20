@@ -788,6 +788,19 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
+.merch__credit-link {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 2px;
+    transition: color var(--transition-fast);
+}
+
+.merch__credit-link:hover {
+    color: var(--color-accent-dark);
+}
+
 .cause {
     background-color: var(--color-off-white);
 }
